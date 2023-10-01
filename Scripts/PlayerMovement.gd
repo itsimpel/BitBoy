@@ -1,32 +1,32 @@
 extends KinematicBody2D
 
 # abilities
-export var canWalk := true
-export var canRun := true # also canWalk
-export var canJump := true
-export var canWallSlide := true
-export var canWallJump := true # also canWallSlide
-export var canLedgeHang := true # and ledge jump | also canWallSlide, canWallJump
-export var canDangle := true
+const canWalk := true
+const canRun := true # also canWalk
+const canJump := true
+const canWallSlide := true
+const canWallJump := true # also canWallSlide
+const canLedgeHang := true # and ledge jump | also canWallSlide, canWallJump
+const canDangle := true
 
 # horizontal movement
-export var speed := 1.0
-export var runSpeedMultiplier := 2.0
-export var accelTime := 0.1
-export var decelTime := 0.05
+const speed := 1.0
+const runSpeedMultiplier := 1.4
+const accelTime := 0.1
+const decelTime := 0.05
 var accel := 0.0
 var decel := 0.0
 
 # jump movement
-export var maxJumpHeight := 0.3
-export var minJumpHeight := 0.08
-export var jumpTime := 0.3
-export var graceTime := 0.1
-export var coyoteTime := 0.08
-export var maxFallSpeed := 2.0
-export var minPeakVel := 0.4
-export var peakGravMultiplier := 0.5
-export var peakSpeedMultiplier := 1.1
+const maxJumpHeight := 0.3
+const minJumpHeight := 0.08
+const jumpTime := 0.3
+const graceTime := 0.1
+const coyoteTime := 0.08
+const maxFallSpeed := 2.0
+const minPeakVel := 0.4
+const peakGravMultiplier := 0.5
+const peakSpeedMultiplier := 1.1
 var normalGrav := 0.0
 var cancelGrav := 0.0
 var topGrav := 0.0
@@ -35,12 +35,12 @@ var wasOnFloor := false
 var isAtPeak := false
 
 # wall movement
-export var wallJumpTime := 0.2
-export var wallJumpVel := Vector2(1.3, 1.0)
-export var slidingSpeed := 0.3
-export var wallHangTime := 0.1
-export var ledgeJumpMultiplier := 0.7
-export var pullMoveMultiplier := 1.0
+const wallJumpTime := 0.2
+const wallJumpVel := Vector2(1.3, 1.0)
+const slidingSpeed := 0.3
+const wallHangTime := 0.1
+const ledgeJumpMultiplier := 0.7
+const pullMoveMultiplier := 1.0
 var wallJumpDir := 0
 var isWallSliding := false
 var isLedgeHanging := false
@@ -51,7 +51,7 @@ var lastFacing := 0
 var lastWallDir := 0
 
 # motion variables
-export var outputScaler := 240
+const outputScaler := 120
 var vel := Vector2.ZERO
 var lookingDir := Vector2.ZERO
 
@@ -66,6 +66,7 @@ func _ready():
 	_setup_timers()
 
 func _process(delta): #_physics_process(delta):
+	
 	_inputs(delta)
 	
 	if (canWalk):
@@ -162,7 +163,6 @@ func _wall_motion_modifiers(delta):
 	
 	if ((lastWallDir != round(lookingDir.x) || lastWallDir == 0) && isWallSliding):
 		if (wallHangTimer.is_stopped() && !asdf):
-			print("hi")
 			wallHangTimer.start()
 			asdf = true
 		elif (!wallHangTimer.is_stopped()):
