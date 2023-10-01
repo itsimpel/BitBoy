@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://envs/FoliageBg00.png" type="Texture" id=2]
 [ext_resource path="res://envs/FoliageEnv00.png" type="Texture" id=3]
 [ext_resource path="res://envs/tile.png" type="Texture" id=4]
 [ext_resource path="res://envs/FoliageEnv01.png" type="Texture" id=5]
+[ext_resource path="res://Nodes/Parasite.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -29,10 +30,14 @@ zoom = Vector2( 0.28, 0.28 )
 smoothing_enabled = true
 smoothing_speed = 3.0
 
+[node name="Parasite" parent="." instance=ExtResource( 6 )]
+position = Vector2( 677, 221 )
+
 [node name="FoliageEnv00" type="AnimatedSprite" parent="."]
 position = Vector2( 500, -15 )
 frames = SubResource( 1 )
 animation = "main"
+frame = 1
 playing = true
 
 [node name="Black" type="Node2D" parent="."]
@@ -61,6 +66,7 @@ texture = ExtResource( 4 )
 [node name="Hitboxes" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Hitboxes"]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitboxes/StaticBody2D"]
 polygon = PoolVector2Array( 587, -13, 588, 86, 594, 96, 613, 95, 621, 93, 641, 102, 651, 75, 693, 72, 720, 84, 744, 76, 762, 98, 782, 102, 790, 124, 832, 124, 832, 173, 796, 173, 796, 173, 796, 190, 768, 190, 768, 231, 544, 231, 544, 204, 528, 204, 528, 136, 553, 136, 552, -10, 407, -10, 407, 73, 337, 73, 326, 73, 326, 57, 321, 57, 321, 39, 304, 39, 304, 10, 297, 10, 297, -5, 246, -5, 246, 34, 196, 34, 196, 43, 180, 43, 180, 56, 73, 56, 73, -27, 96, -53, 207, -54, 207, -36, 272, -36, 272, -47, 301, -47, 301, -66, 309, -66, 321, -101, 317, -153, 324, -191, 384, -218, 412, -221, 415, -256, 31, -261, 33, 283, 968, 283, 956, -267, 415, -256, 412, -221, 462, -221, 513, -191, 519, -141, 530, -71, 641, -71, 641, -32, 628, -32, 628, -13 )
