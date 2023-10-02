@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scripts/PlayerMovement.gd" type="Script" id=1]
 [ext_resource path="res://anims/idle/IdleAnim1.png" type="Texture" id=2]
@@ -23,6 +23,9 @@
 [ext_resource path="res://anims/jump/JumpAnim7.png" type="Texture" id=21]
 [ext_resource path="res://anims/jump/JumpAnim5.png" type="Texture" id=22]
 [ext_resource path="res://anims/jump/JumpAnim6.png" type="Texture" id=23]
+[ext_resource path="res://anims/leeched/leechedAnim2.png" type="Texture" id=24]
+[ext_resource path="res://anims/leeched/leechedAnim1.png" type="Texture" id=25]
+[ext_resource path="res://Scripts/AImanager.gd" type="Script" id=26]
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 3.5
@@ -76,6 +79,11 @@ animations = [ {
 "name": "landed",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 25 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "leeched",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "runL",
@@ -97,7 +105,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource( 1 )
 
@@ -146,6 +154,10 @@ position = Vector2( 0, -22 )
 [node name="Animation" type="AnimatedSprite" parent="."]
 position = Vector2( -0.5, -6.5 )
 frames = SubResource( 5 )
-animation = "airDownL"
+animation = "leeched"
+frame = 1
 playing = true
 script = ExtResource( 10 )
+
+[node name="AImanager" type="Node2D" parent="."]
+script = ExtResource( 26 )

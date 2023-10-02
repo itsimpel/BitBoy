@@ -1,10 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://enemies/parasite.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/EnemyParasite.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 4.5, 5.75 )
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -24,6 +33,21 @@ region = Rect2( 0, 16, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "jumpL",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "jumpR",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "leeching",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "walkL",
@@ -35,23 +59,25 @@ animations = [ {
 "speed": 6.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 4.5, 5.75 )
+
 [node name="Parasite" type="KinematicBody2D"]
+collision_layer = 4
 script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 7 )
+animation = "leeching"
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 1.75 )
 shape = SubResource( 6 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 7 )
-animation = "walkR"
-frame = 1
-playing = true
-
 [node name="rightDetection" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 11, 0 )
-collision_mask = 7
 
 [node name="leftDetection" type="RayCast2D" parent="."]
 enabled = true

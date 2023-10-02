@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FoliageEnv01.png-854f7ad5f7301097ffd738037b6c2778.stex"
+path="res://.import/leechedAnim2.png-de3f539b60b6c4dc5ab74bc89ab706f1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://envs/FoliageEnv01.png"
-dest_files=[ "res://.import/FoliageEnv01.png-854f7ad5f7301097ffd738037b6c2778.stex" ]
+source_file="res://anims/leeched/leechedAnim2.png"
+dest_files=[ "res://.import/leechedAnim2.png-de3f539b60b6c4dc5ab74bc89ab706f1.stex" ]
 
 [params]
 
